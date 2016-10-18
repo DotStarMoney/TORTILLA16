@@ -1,0 +1,79 @@
+mask_z:         if 1, take ZERO value computed by ALU. if 0, ZERO does not change.
+
+mask_c:         if 1, take CARRY value computed by ALU. if 0, CARRY does not change.
+
+mask_s:         if 1, take SIGN value computed by ALU. if 0, SIGN does not change.
+
+addr_src:       addr_src, the address passed into MEM, also can be bypassed into WB data
+                00 = 11bit IMM, 01 = Program Counter, 10 = &h100 + Stack Pointer
+
+mem_mode:       0 = in second memory stage, data is written from address passed into MEM.
+                1 = in second stage, data is written from 16 bit value read from address
+                passed into MEM.
+
+rw:             0 = do not write data into MEM. 1 = write data into MEM during second stage
+
+sel:            selects WB destination. 000 = PC, 001 = SP, 010 = A, 011 = B, 100 = C, 101 = D
+
+modePC:         when sel <> PC, what to do with PC during WB. 00 = unchanged. 01 = increase by 1. 
+                10 = decrease by 1. 11 = add signed IMM value to it.
+
+modeSP:         when sel <> SP, what to do with SP during WB. 00 = unchanged. 01 = increase by 2. 
+                10 = decrease by 2. 11 = add signed IMM value to it.
+                
+premem:         during WB, selects bypass signal source.
+                if 0: premem = addr_src value. if 1: premem = ALU result.
+
+memlo:          during WB, if 0: selects premem bypass signal. if 1: selects MEM output
+
+ind:            during WB, selects MEM output. if 0, selects MEM2 8bit data. if 1, selects
+                MEM1 16bit data.
+                
+shiftmode:      selects shift function for ALU shift block. 00 = rotate, 01 = logical shift,
+                10 = arithmetic shift right. 11 = bypass.
+                
+shiftdirection: selects shift direction for ALU shift block. 0 = shift left. 1 = shift right.
+                has no effect if shiftmode = 10.
+                
+shift_src:      selects shift distance. if 0, select GP2 least significant 3 bits. if
+                1, selects IMM.
+                
+a_src:          selects source of ALU A register. if 00, selects GP1 value. if 01, selects
+                SP. if 10 selects STAT. A will be passed into ALU result.
+                
+sub_add:        selects operating mode of ALU Adder block. If 0, subtraction. If 1, addition.
+
+op_signed:      selects sign mode of ALU Adder block. If 0, unsigned. If 1, signed.
+
+b_src:          selects source of ALU B register. if 00, select GP2 value. if 01, selects
+                IMM. if 10, selects SP. if 11, selects value 2. B is fed into MEM index offset 
+                and B is fed into STAT overwrite.
+                
+mode:           selects operating mode of ALU bitwise block. 00 = bitwise OR B to A. 01 = 
+                bitwise AND B to A. 10 = bitwise XOR B to A. 11 = bitwise NOT of A.
+                
+bypass:         if 1, output of ALU adder block is bypassed to ALU Result. if 0, output of 
+                adder block is first passed into bitwise block.
+                
+cs:             selects source of carry signal. If 0, CARRY comes from ALU adder block. If 1,
+                CARRY comes from shift block.
+                
+rw_long:        if 1, writes PC+1 into value specified by addr_src. Cannot be used if rw = 1.
+                If 0, no change.
+                
+ow_status:      if 1, status bits are overwritten with B value after ALU block. If 0, status bits
+                are as specified by ALU output and mask bits.
+                
+bypass_add:     if 1, output of adder block is value passed into operand A. if 0, ouput of adder         
+                block is result of computation.
+            
+bittest_bit:    specifies which of the 8 stat bits to test for equality against bittest_val
+
+bittest_val:    if bit in stat selected by bittest_bit = bittest_val, wb_offset is immediate, otherwise
+                wb_offset = 1
+                
+stack_page:     if 1, address passed to MEM is stack page + offset. If 0, address is value in addr.
+
+offset_en:      if 1, value of offset passed into block is input value. if 0, value of offset passed in = 0.
+
+offset_src:     if 0, offset value is taken from ALU B. if 1, offset value taken from ALU res.

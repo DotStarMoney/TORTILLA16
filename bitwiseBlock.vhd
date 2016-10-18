@@ -1,0 +1,76 @@
+
+library ieee;                                   
+use ieee.std_logic_1164.all;
+
+entity bitwiseBlock is
+	generic(
+		BIT_WIDTH : natural := 8
+	);
+	port(
+		a    		: in std_logic_vector(7 downto 0);
+		b    		: in std_logic_vector(7 downto 0);
+		mode 		: in std_logic_vector(1 downto 0);
+		bypass	: in std_logic;
+		o    		: out std_logic_vector(7 downto 0);
+		zero 		: out std_logic
+	);
+end bitwiseBlock;
+
+architecture struc of bitwiseBlock is
+	begin
+		process(a, b, bypass, mode)
+		begin
+			if bypass = '0' then
+				case mode is
+					when "00" =>	
+						o(0) <= a(0) or b(0);
+						o(1) <= a(1) or b(1);
+						o(2) <= a(2) or b(2);
+						o(3) <= a(3) or b(3);
+						o(4) <= a(4) or b(4);
+						o(5) <= a(5) or b(5);
+						o(6) <= a(6) or b(6);
+						o(7) <= a(7) or b(7);
+					when "01" =>
+						o(0) <= a(0) and b(0);
+						o(1) <= a(1) and b(1);
+						o(2) <= a(2) and b(2);
+						o(3) <= a(3) and b(3);
+						o(4) <= a(4) and b(4);
+						o(5) <= a(5) and b(5);
+						o(6) <= a(6) and b(6);
+						o(7) <= a(7) and b(7);	
+					when "10" =>
+						o(0) <= a(0) xor b(0);
+						o(1) <= a(1) xor b(1);
+						o(2) <= a(2) xor b(2);
+						o(3) <= a(3) xor b(3);
+						o(4) <= a(4) xor b(4);
+						o(5) <= a(5) xor b(5);
+						o(6) <= a(6) xor b(6);
+						o(7) <= a(7) xor b(7);				
+					when "11" =>
+						o(0) <= not a(0);
+						o(1) <= not a(1);
+						o(2) <= not a(2);
+						o(3) <= not a(3);
+						o(4) <= not a(4);
+						o(5) <= not a(5);
+						o(6) <= not a(6);
+						o(7) <= not a(7);
+					when others =>
+					  
+				end case;
+			else
+				o(0) <= a(0);
+				o(1) <= a(1);
+				o(2) <= a(2);
+				o(3) <= a(3);
+				o(4) <= a(4);
+				o(5) <= a(5);
+				o(6) <= a(6);
+				o(7) <= a(7);
+			end if;
+		end process;
+		zero <= not (a(0) or a(1) or a(2) or a(3) or a(4) or a(5) or a(6) or a(7));
+end struc;

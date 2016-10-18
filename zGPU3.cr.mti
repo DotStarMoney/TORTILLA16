@@ -1,0 +1,522 @@
+C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub4.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub4.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub4
+-- Compiling architecture SYN of lpm_add_sub4
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant4.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant4.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant4
+-- Compiling architecture SYN of lpm_constant4
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub6.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub6.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub6
+-- Compiling architecture SYN of lpm_add_sub6
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant6.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant6.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant6
+-- Compiling architecture SYN of lpm_constant6
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/coreTest.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/coreTest.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity coreTest
+-- Compiling architecture bdf_type of coreTest
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant8.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant8.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant8
+-- Compiling architecture SYN of lpm_constant8
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux11.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux11.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux11
+-- Compiling architecture SYN of lpm_mux11
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux13.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux13.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux13
+-- Compiling architecture SYN of lpm_mux13
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/regile.vhd {1 {vcom -work work -2002 -explicit {C:\Users\Zamaster\Academic\Fall2014\EmbeddedSystems\GPU\regile.vhd}
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity regile
+-- Compiling architecture bdf_type of regile
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux15.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux15.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux15
+-- Compiling architecture SYN of lpm_mux15
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_counter0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_counter0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_counter0
+-- Compiling architecture SYN of lpm_counter0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/idrom.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/idrom.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity idrom
+-- Compiling architecture SYN of idrom
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux1
+-- Compiling architecture SYN of lpm_mux1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_clshift0
+-- Compiling architecture SYN of lpm_clshift0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux3.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux3.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux3
+-- Compiling architecture SYN of lpm_mux3
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/threadMem.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/threadMem.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity threadMem
+-- Compiling architecture bdf_type of threadMem
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift2.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_clshift2
+-- Compiling architecture SYN of lpm_clshift2
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux5.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux5.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux5
+-- Compiling architecture SYN of lpm_mux5
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux7.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux7.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux7
+-- Compiling architecture SYN of lpm_mux7
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux9.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux9.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux9
+-- Compiling architecture SYN of lpm_mux9
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/vwd_ff.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/vwd_ff.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity D_FF_VHDL
+-- Compiling architecture Behavioral of D_FF_VHDL
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/GPregmem.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/GPregmem.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity GPregmem
+-- Compiling architecture SYN of gpregmem
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_decode0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_decode0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_decode0
+-- Compiling architecture SYN of lpm_decode0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/PCregmem.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/PCregmem.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity PCregmem
+-- Compiling architecture SYN of pcregmem
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub1
+-- Compiling architecture SYN of lpm_add_sub1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant1
+-- Compiling architecture SYN of lpm_constant1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub3.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub3.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub3
+-- Compiling architecture SYN of lpm_add_sub3
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant3.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant3.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant3
+-- Compiling architecture SYN of lpm_constant3
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/signextend8_16.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/signextend8_16.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity signextend8_16
+-- Compiling architecture Behavioral of signextend8_16
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub5.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub5.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub5
+-- Compiling architecture SYN of lpm_add_sub5
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant5.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant5.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant5
+-- Compiling architecture SYN of lpm_constant5
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub7.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub7.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub7
+-- Compiling architecture SYN of lpm_add_sub7
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant7.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant7.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant7
+-- Compiling architecture SYN of lpm_constant7
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/trom.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/trom.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity trom
+-- Compiling architecture SYN of trom
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/bitwiseBlock.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/bitwiseBlock.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity bitwiseBlock
+-- Compiling architecture struc of bitwiseBlock
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux10.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux10.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux10
+-- Compiling architecture SYN of lpm_mux10
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant9.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant9.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant9
+-- Compiling architecture SYN of lpm_constant9
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux12.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux12.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux12
+-- Compiling architecture SYN of lpm_mux12
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ID0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ID0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity InstructionDecoderStage1
+-- Compiling architecture Behavioral of InstructionDecoderStage1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/adderComputeCarry.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/adderComputeCarry.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity adderComputeCarry
+-- Compiling architecture struc of adderComputeCarry
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux14.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux14.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux14
+-- Compiling architecture SYN of lpm_mux14
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/shiftBlock.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/shiftBlock.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity shiftBlock
+-- Compiling architecture bdf_type of shiftBlock
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/coreram.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/coreram.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity coreram
+-- Compiling architecture SYN of coreram
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_counter1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_counter1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_counter1
+-- Compiling architecture SYN of lpm_counter1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ALU.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ALU.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ALU
+-- Compiling architecture bdf_type of ALU
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux0
+-- Compiling architecture SYN of lpm_mux0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/multignd.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/multignd.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity MULTI_GND
+-- Compiling architecture Behavioral of MULTI_GND
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux2.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux2
+-- Compiling architecture SYN of lpm_mux2
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/pipeline.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/pipeline.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity pipeline
+-- Compiling architecture bdf_type of pipeline
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_clshift1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_clshift1
+-- Compiling architecture SYN of lpm_clshift1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux4.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux4.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux4
+-- Compiling architecture SYN of lpm_mux4
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/Z_ABS.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/Z_ABS.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Z_ABS
+-- Compiling architecture Behavioral of Z_ABS
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux6.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux6.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux6
+-- Compiling architecture SYN of lpm_mux6
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux8.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_mux8.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package LPM_COMPONENTS
+-- Compiling entity lpm_mux8
+-- Compiling architecture SYN of lpm_mux8
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/encode4_2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/encode4_2.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity encode4_2
+-- Compiling architecture Behavioral of encode4_2
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_decode1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_decode1.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_decode1
+-- Compiling architecture SYN of lpm_decode1
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/flop16x16.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/flop16x16.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Flop16xN
+-- Compiling architecture Behavioral of Flop16xN
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/core.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/core.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity core
+-- Compiling architecture bdf_type of core
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub0
+-- Compiling architecture SYN of lpm_add_sub0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant0.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant0.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant0
+-- Compiling architecture SYN of lpm_constant0
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_add_sub2.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_add_sub2
+-- Compiling architecture SYN of lpm_add_sub2
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/lpm_constant2.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity lpm_constant2
+-- Compiling architecture SYN of lpm_constant2
+
+} {} {}} C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ID.vhd {1 {vcom -work work -2002 -explicit C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/ID.vhd
+Model Technology ModelSim ALTERA vcom 10.0c Compiler 2011.09 Sep 21 2011
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity InstructionDecoderStage2
+-- Compiling architecture Behavioral of InstructionDecoderStage2
+
+} {} {}}

@@ -1,0 +1,835 @@
+-- Copyright (C) 1991-2011 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- PROGRAM		"Quartus II 64-Bit"
+-- VERSION		"Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Full Version"
+-- CREATED		"Wed Dec 10 23:40:30 2014"
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all; 
+
+LIBRARY work;
+
+ENTITY core IS 
+	PORT
+	(
+		clk :  IN  STD_LOGIC;
+		rst :  IN  STD_LOGIC;
+		thread :  IN  STD_LOGIC_VECTOR(3 DOWNTO 0)
+	);
+END core;
+
+ARCHITECTURE bdf_type OF core IS 
+
+COMPONENT alu
+	PORT(clk : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 ALUCtrl : IN STD_LOGIC_VECTOR(29 DOWNTO 0);
+		 ALUOut : OUT STD_LOGIC_VECTOR(18 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT threadmem
+	PORT(clk : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 mode : IN STD_LOGIC;
+		 rw : IN STD_LOGIC;
+		 rw_long : IN STD_LOGIC;
+		 stack_page : IN STD_LOGIC;
+		 offset_en : IN STD_LOGIC;
+		 addr : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 data : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 long_data : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 offset : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 thread : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 ind_result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT multi_gnd
+GENERIC (BIT_WIDTH : INTEGER
+			);
+	PORT(		 q : OUT STD_LOGIC_VECTOR(BIT_WIDTH-1 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux9
+	PORT(sel : IN STD_LOGIC;
+		 data0x : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT d_ff_vhdl
+GENERIC (BIT_WIDTH : INTEGER
+			);
+	PORT(clk : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 ce : IN STD_LOGIC;
+		 d : IN STD_LOGIC_VECTOR(BIT_WIDTH-1 DOWNTO 0);
+		 q : OUT STD_LOGIC_VECTOR(BIT_WIDTH-1 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux0
+	PORT(data1 : IN STD_LOGIC;
+		 data0 : IN STD_LOGIC;
+		 sel : IN STD_LOGIC;
+		 result : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux7
+	PORT(sel : IN STD_LOGIC;
+		 data0x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT regile
+	PORT(clk : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 r_gsel1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 r_gsel2 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 r_thread : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 w_data : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 w_modePC : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 w_modeSP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 w_offset : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 w_sel : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 w_status : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 w_thread : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 r_gout1 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 r_gout2 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 r_pc : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 r_sp : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 r_stat : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT instructiondecoderstage1
+	PORT(opcode : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+		 a_src : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 b_src : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT instructiondecoderstage2
+	PORT(clk : IN STD_LOGIC;
+		 opcode : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+		 mask_z : OUT STD_LOGIC;
+		 mask_c : OUT STD_LOGIC;
+		 mask_s : OUT STD_LOGIC;
+		 mem_mode : OUT STD_LOGIC;
+		 rw : OUT STD_LOGIC;
+		 premem : OUT STD_LOGIC;
+		 memlo : OUT STD_LOGIC;
+		 ind : OUT STD_LOGIC;
+		 shiftdirection : OUT STD_LOGIC;
+		 shift_src : OUT STD_LOGIC;
+		 sub_add : OUT STD_LOGIC;
+		 op_signed : OUT STD_LOGIC;
+		 bypass : OUT STD_LOGIC;
+		 cs : OUT STD_LOGIC;
+		 rw_long : OUT STD_LOGIC;
+		 ow_status : OUT STD_LOGIC;
+		 bypass_add : OUT STD_LOGIC;
+		 bittest_val : OUT STD_LOGIC;
+		 stack_page : OUT STD_LOGIC;
+		 offset_en : OUT STD_LOGIC;
+		 offset_src : OUT STD_LOGIC;
+		 a_src : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 addr_src : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 b_src : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 bittest_bit : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 mode : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 modePC : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 modeSP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 opcode_out : OUT STD_LOGIC_VECTOR(23 DOWNTO 0);
+		 sel : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 shiftmode : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_constant8
+	PORT(		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux10
+	PORT(data0x : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 data2x : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 sel : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(10 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux14
+	PORT(data7 : IN STD_LOGIC;
+		 data6 : IN STD_LOGIC;
+		 data5 : IN STD_LOGIC;
+		 data4 : IN STD_LOGIC;
+		 data3 : IN STD_LOGIC;
+		 data2 : IN STD_LOGIC;
+		 data1 : IN STD_LOGIC;
+		 data0 : IN STD_LOGIC;
+		 sel : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 result : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux11
+	PORT(sel : IN STD_LOGIC;
+		 data0x : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux13
+	PORT(data0x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data2x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 sel : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT trom
+	PORT(clock : IN STD_LOGIC;
+		 address : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+		 q : OUT STD_LOGIC_VECTOR(23 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_constant1
+	PORT(		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_mux2
+	PORT(data0x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data2x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data3x : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 sel : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_add_sub7
+	PORT(dataa : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(10 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_constant6
+	PORT(		 result : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+	);
+END COMPONENT;
+
+SIGNAL	a_src_out :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	addr_src_out :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	ALUCtrl_in0 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in1 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in10 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in11 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in12 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in13 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in14 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in15 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in17 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in18 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in19 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in2 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in20 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in21 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in22 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in23 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in24 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in25 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in26 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in27 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in28 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in29 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in3 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in4 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in5 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in6 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in7 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in8 :  STD_LOGIC;
+SIGNAL	ALUCtrl_in9 :  STD_LOGIC;
+SIGNAL	ALURes :  STD_LOGIC_VECTOR(18 DOWNTO 0);
+SIGNAL	b_src_out :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	carry_out :  STD_LOGIC;
+SIGNAL	general_purposeA :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	general_purposeB :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	ind_memResult :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	master_pc :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	master_regs :  STD_LOGIC_VECTOR(35 DOWNTO 0);
+SIGNAL	master_thread :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	memory_flags :  STD_LOGIC_VECTOR(61 DOWNTO 0);
+SIGNAL	memory_flags_in10 :  STD_LOGIC;
+SIGNAL	memory_flags_in11 :  STD_LOGIC;
+SIGNAL	memory_flags_in12 :  STD_LOGIC;
+SIGNAL	memory_flags_in13 :  STD_LOGIC;
+SIGNAL	memory_flags_in14 :  STD_LOGIC;
+SIGNAL	memory_flags_in15 :  STD_LOGIC;
+SIGNAL	memory_flags_in16 :  STD_LOGIC;
+SIGNAL	memory_flags_in17 :  STD_LOGIC;
+SIGNAL	memory_flags_in18 :  STD_LOGIC;
+SIGNAL	memory_flags_in19 :  STD_LOGIC;
+SIGNAL	memory_flags_in20 :  STD_LOGIC;
+SIGNAL	memory_flags_in21 :  STD_LOGIC;
+SIGNAL	memory_flags_in22 :  STD_LOGIC;
+SIGNAL	memory_flags_in23 :  STD_LOGIC;
+SIGNAL	memory_flags_in28 :  STD_LOGIC;
+SIGNAL	memory_flags_in29 :  STD_LOGIC;
+SIGNAL	memory_flags_in30 :  STD_LOGIC;
+SIGNAL	memory_flags_in31 :  STD_LOGIC;
+SIGNAL	memory_flags_in32 :  STD_LOGIC;
+SIGNAL	memory_flags_in33 :  STD_LOGIC;
+SIGNAL	memory_flags_in34 :  STD_LOGIC;
+SIGNAL	memory_flags_in43 :  STD_LOGIC;
+SIGNAL	memory_flags_in44 :  STD_LOGIC;
+SIGNAL	memory_flags_in45 :  STD_LOGIC;
+SIGNAL	memory_flags_in46 :  STD_LOGIC;
+SIGNAL	memory_flags_in47 :  STD_LOGIC;
+SIGNAL	memory_flags_in48 :  STD_LOGIC;
+SIGNAL	memory_flags_in49 :  STD_LOGIC;
+SIGNAL	memory_flags_in50 :  STD_LOGIC;
+SIGNAL	memory_flags_in51 :  STD_LOGIC;
+SIGNAL	memory_flags_in52 :  STD_LOGIC;
+SIGNAL	memory_flags_in53 :  STD_LOGIC;
+SIGNAL	memory_flags_in54 :  STD_LOGIC;
+SIGNAL	memory_flags_in55 :  STD_LOGIC;
+SIGNAL	memory_flags_in56 :  STD_LOGIC;
+SIGNAL	memory_flags_in57 :  STD_LOGIC;
+SIGNAL	memory_flags_in58 :  STD_LOGIC;
+SIGNAL	memory_flags_in59 :  STD_LOGIC;
+SIGNAL	memory_flags_in60 :  STD_LOGIC;
+SIGNAL	memory_flags_in61 :  STD_LOGIC;
+SIGNAL	memory_flags_in8 :  STD_LOGIC;
+SIGNAL	memory_flags_in9 :  STD_LOGIC;
+SIGNAL	memResult :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	opcode_bits :  STD_LOGIC_VECTOR(23 DOWNTO 0);
+SIGNAL	r_sp :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	r_stat :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	shift_src_out :  STD_LOGIC;
+SIGNAL	sign_out :  STD_LOGIC;
+SIGNAL	stackPageConst :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	stat_sel :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	stat_test_bit :  STD_LOGIC;
+SIGNAL	status_res :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	tm_offset_in :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	w_offset_res :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	writeback_flags :  STD_LOGIC_VECTOR(53 DOWNTO 0);
+SIGNAL	zero_extend :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	zero_extend_addr :  STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL	zero_out :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(29 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_25 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_26 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(53 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_27 :  STD_LOGIC_VECTOR(23 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_12 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_13 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_14 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_28 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_18 :  STD_LOGIC_VECTOR(35 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_19 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_20 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_22 :  STD_LOGIC_VECTOR(61 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_24 :  STD_LOGIC_VECTOR(53 DOWNTO 0);
+
+SIGNAL	GDFX_TEMP_SIGNAL_14 :  STD_LOGIC_VECTOR(13 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_18 :  STD_LOGIC_VECTOR(35 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_10 :  STD_LOGIC_VECTOR(10 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_1 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_3 :  STD_LOGIC_VECTOR(53 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_17 :  STD_LOGIC_VECTOR(29 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_0 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_2 :  STD_LOGIC_VECTOR(61 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_4 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_5 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_6 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_7 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_8 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_9 :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_11 :  STD_LOGIC_VECTOR(10 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_12 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_13 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_15 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	GDFX_TEMP_SIGNAL_16 :  STD_LOGIC_VECTOR(10 DOWNTO 0);
+
+BEGIN 
+SYNTHESIZED_WIRE_25 <= '1';
+SYNTHESIZED_WIRE_26 <= '1';
+SYNTHESIZED_WIRE_28 <= '1';
+
+GDFX_TEMP_SIGNAL_14 <= (master_thread(3 DOWNTO 0) & master_pc(9 DOWNTO 0));
+GDFX_TEMP_SIGNAL_18 <= (master_pc(15 DOWNTO 0) & r_sp(7 DOWNTO 0) & r_stat(7 DOWNTO 0) & master_thread(3 DOWNTO 0));
+GDFX_TEMP_SIGNAL_10 <= (stackPageConst(2 DOWNTO 0) & master_regs(19 DOWNTO 12));
+GDFX_TEMP_SIGNAL_1 <= (zero_extend(7 DOWNTO 0) & writeback_flags(34 DOWNTO 27));
+GDFX_TEMP_SIGNAL_3 <= (memory_flags(45 DOWNTO 43) & zero_extend_addr(4 DOWNTO 0) & memory_flags(21 DOWNTO 11) & ALURes(10 DOWNTO 3) & status_res(7 DOWNTO 0) & memory_flags(42 DOWNTO 24));
+GDFX_TEMP_SIGNAL_17 <= (ALUCtrl_in29 & ALUCtrl_in28 & ALUCtrl_in27 & ALUCtrl_in26 & ALUCtrl_in25 & ALUCtrl_in24 & ALUCtrl_in23 & ALUCtrl_in22 & ALUCtrl_in21 & ALUCtrl_in20 & ALUCtrl_in19 & ALUCtrl_in18 & ALUCtrl_in17 & master_regs(5) & ALUCtrl_in15 & ALUCtrl_in14 & ALUCtrl_in13 & ALUCtrl_in12 & ALUCtrl_in11 & ALUCtrl_in10 & ALUCtrl_in9 & ALUCtrl_in8 & ALUCtrl_in7 & ALUCtrl_in6 & ALUCtrl_in5 & ALUCtrl_in4 & ALUCtrl_in3 & ALUCtrl_in2 & ALUCtrl_in1 & ALUCtrl_in0);
+GDFX_TEMP_SIGNAL_0 <= (zero_extend(7 DOWNTO 0) & memResult(7 DOWNTO 0));
+GDFX_TEMP_SIGNAL_2 <= (memory_flags_in61 & memory_flags_in60 & memory_flags_in59 & memory_flags_in58 & memory_flags_in57 & memory_flags_in56 & memory_flags_in55 & memory_flags_in54 & memory_flags_in53 & memory_flags_in52 & memory_flags_in51 & memory_flags_in50 & memory_flags_in49 & memory_flags_in48 & memory_flags_in47 & memory_flags_in46 & memory_flags_in45 & memory_flags_in44 & memory_flags_in43 & w_offset_res(7 DOWNTO 0) & memory_flags_in34 & memory_flags_in33 & memory_flags_in32 & memory_flags_in31 & memory_flags_in30 & memory_flags_in29 & memory_flags_in28 & master_regs(3 DOWNTO 0) & memory_flags_in23 & memory_flags_in22 & memory_flags_in21 & memory_flags_in20 & memory_flags_in19 & memory_flags_in18 & memory_flags_in17 & memory_flags_in16 & memory_flags_in15 & memory_flags_in14 & memory_flags_in13 & memory_flags_in12 & memory_flags_in11 & memory_flags_in10 & memory_flags_in9 & memory_flags_in8 & master_regs(11 DOWNTO 4));
+GDFX_TEMP_SIGNAL_4 <= (memory_flags(7 DOWNTO 3) & zero_out & carry_out & sign_out);
+ALUCtrl_in26 <= GDFX_TEMP_SIGNAL_5(1);
+ALUCtrl_in25 <= GDFX_TEMP_SIGNAL_5(0);
+
+memory_flags_in32 <= GDFX_TEMP_SIGNAL_6(1);
+memory_flags_in31 <= GDFX_TEMP_SIGNAL_6(0);
+
+memory_flags_in34 <= GDFX_TEMP_SIGNAL_7(1);
+memory_flags_in33 <= GDFX_TEMP_SIGNAL_7(0);
+
+memory_flags_in30 <= GDFX_TEMP_SIGNAL_8(2);
+memory_flags_in29 <= GDFX_TEMP_SIGNAL_8(1);
+memory_flags_in28 <= GDFX_TEMP_SIGNAL_8(0);
+
+ALUCtrl_in1 <= GDFX_TEMP_SIGNAL_9(1);
+ALUCtrl_in0 <= GDFX_TEMP_SIGNAL_9(0);
+
+memory_flags_in21 <= GDFX_TEMP_SIGNAL_11(10);
+memory_flags_in20 <= GDFX_TEMP_SIGNAL_11(9);
+memory_flags_in19 <= GDFX_TEMP_SIGNAL_11(8);
+memory_flags_in18 <= GDFX_TEMP_SIGNAL_11(7);
+memory_flags_in17 <= GDFX_TEMP_SIGNAL_11(6);
+memory_flags_in16 <= GDFX_TEMP_SIGNAL_11(5);
+memory_flags_in15 <= GDFX_TEMP_SIGNAL_11(4);
+memory_flags_in14 <= GDFX_TEMP_SIGNAL_11(3);
+memory_flags_in13 <= GDFX_TEMP_SIGNAL_11(2);
+memory_flags_in12 <= GDFX_TEMP_SIGNAL_11(1);
+memory_flags_in11 <= GDFX_TEMP_SIGNAL_11(0);
+
+ALUCtrl_in5 <= GDFX_TEMP_SIGNAL_12(2);
+ALUCtrl_in4 <= GDFX_TEMP_SIGNAL_12(1);
+ALUCtrl_in3 <= GDFX_TEMP_SIGNAL_12(0);
+
+ALUCtrl_in13 <= GDFX_TEMP_SIGNAL_13(7);
+ALUCtrl_in12 <= GDFX_TEMP_SIGNAL_13(6);
+ALUCtrl_in11 <= GDFX_TEMP_SIGNAL_13(5);
+ALUCtrl_in10 <= GDFX_TEMP_SIGNAL_13(4);
+ALUCtrl_in9 <= GDFX_TEMP_SIGNAL_13(3);
+ALUCtrl_in8 <= GDFX_TEMP_SIGNAL_13(2);
+ALUCtrl_in7 <= GDFX_TEMP_SIGNAL_13(1);
+ALUCtrl_in6 <= GDFX_TEMP_SIGNAL_13(0);
+
+ALUCtrl_in24 <= GDFX_TEMP_SIGNAL_15(7);
+ALUCtrl_in23 <= GDFX_TEMP_SIGNAL_15(6);
+ALUCtrl_in22 <= GDFX_TEMP_SIGNAL_15(5);
+ALUCtrl_in21 <= GDFX_TEMP_SIGNAL_15(4);
+ALUCtrl_in20 <= GDFX_TEMP_SIGNAL_15(3);
+ALUCtrl_in19 <= GDFX_TEMP_SIGNAL_15(2);
+ALUCtrl_in18 <= GDFX_TEMP_SIGNAL_15(1);
+ALUCtrl_in17 <= GDFX_TEMP_SIGNAL_15(0);
+
+memory_flags_in56 <= GDFX_TEMP_SIGNAL_16(10);
+memory_flags_in55 <= GDFX_TEMP_SIGNAL_16(9);
+memory_flags_in54 <= GDFX_TEMP_SIGNAL_16(8);
+memory_flags_in53 <= GDFX_TEMP_SIGNAL_16(7);
+memory_flags_in52 <= GDFX_TEMP_SIGNAL_16(6);
+memory_flags_in51 <= GDFX_TEMP_SIGNAL_16(5);
+memory_flags_in50 <= GDFX_TEMP_SIGNAL_16(4);
+memory_flags_in49 <= GDFX_TEMP_SIGNAL_16(3);
+memory_flags_in48 <= GDFX_TEMP_SIGNAL_16(2);
+memory_flags_in47 <= GDFX_TEMP_SIGNAL_16(1);
+memory_flags_in46 <= GDFX_TEMP_SIGNAL_16(0);
+
+
+
+b2v_inst : alu
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ALUCtrl => SYNTHESIZED_WIRE_0,
+		 ALUOut => ALURes);
+
+
+b2v_inst1 : threadmem
+PORT MAP(clk => clk,
+		 rst => rst,
+		 mode => memory_flags(22),
+		 rw => memory_flags(23),
+		 rw_long => memory_flags(57),
+		 stack_page => memory_flags(59),
+		 offset_en => memory_flags(60),
+		 addr => memory_flags(21 DOWNTO 11),
+		 data => ALURes(10 DOWNTO 3),
+		 long_data => memory_flags(56 DOWNTO 46),
+		 offset => tm_offset_in,
+		 thread => memory_flags(27 DOWNTO 24),
+		 ind_result => ind_memResult,
+		 result => memResult);
+
+
+b2v_inst10 : multi_gnd
+GENERIC MAP(BIT_WIDTH => 8
+			)
+PORT MAP(		 q => zero_extend);
+
+
+b2v_inst11 : lpm_mux9
+PORT MAP(sel => writeback_flags(53),
+		 data0x => GDFX_TEMP_SIGNAL_0,
+		 data1x => ind_memResult,
+		 result => SYNTHESIZED_WIRE_20);
+
+
+b2v_inst12 : lpm_mux9
+PORT MAP(sel => writeback_flags(51),
+		 data0x => writeback_flags(50 DOWNTO 35),
+		 data1x => GDFX_TEMP_SIGNAL_1,
+		 result => SYNTHESIZED_WIRE_19);
+
+
+b2v_inst13 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 62
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_25,
+		 d => GDFX_TEMP_SIGNAL_2,
+		 q => SYNTHESIZED_WIRE_22);
+
+
+b2v_inst14 : lpm_mux0
+PORT MAP(data1 => ALURes(1),
+		 data0 => memory_flags(1),
+		 sel => memory_flags(9),
+		 result => carry_out);
+
+
+b2v_inst15 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 54
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_26,
+		 d => GDFX_TEMP_SIGNAL_3,
+		 q => SYNTHESIZED_WIRE_4);
+
+
+b2v_inst16 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 54
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_26,
+		 d => SYNTHESIZED_WIRE_4,
+		 q => SYNTHESIZED_WIRE_24);
+
+
+b2v_inst17 : lpm_mux0
+PORT MAP(data1 => ALURes(2),
+		 data0 => memory_flags(2),
+		 sel => memory_flags(10),
+		 result => zero_out);
+
+
+b2v_inst18 : multi_gnd
+GENERIC MAP(BIT_WIDTH => 5
+			)
+PORT MAP(		 q => zero_extend_addr);
+
+
+b2v_inst19 : lpm_mux7
+PORT MAP(sel => memory_flags(58),
+		 data0x => GDFX_TEMP_SIGNAL_4,
+		 data1x => ALURes(18 DOWNTO 11),
+		 result => status_res);
+
+
+b2v_inst2 : regile
+PORT MAP(clk => clk,
+		 rst => rst,
+		 r_gsel1 => SYNTHESIZED_WIRE_5,
+		 r_gsel2 => SYNTHESIZED_WIRE_6,
+		 r_thread => master_thread,
+		 w_data => SYNTHESIZED_WIRE_7,
+		 w_modePC => writeback_flags(8 DOWNTO 7),
+		 w_modeSP => writeback_flags(10 DOWNTO 9),
+		 w_offset => writeback_flags(18 DOWNTO 11),
+		 w_sel => writeback_flags(6 DOWNTO 4),
+		 w_status => writeback_flags(26 DOWNTO 19),
+		 w_thread => writeback_flags(3 DOWNTO 0),
+		 r_gout1 => general_purposeA,
+		 r_gout2 => general_purposeB,
+		 r_pc => master_pc,
+		 r_sp => r_sp,
+		 r_stat => r_stat);
+
+
+b2v_inst20 : instructiondecoderstage1
+PORT MAP(opcode => SYNTHESIZED_WIRE_27,
+		 a_src => SYNTHESIZED_WIRE_5,
+		 b_src => SYNTHESIZED_WIRE_6);
+
+
+b2v_inst21 : lpm_mux7
+PORT MAP(sel => SYNTHESIZED_WIRE_9,
+		 data0x => SYNTHESIZED_WIRE_10,
+		 data1x => opcode_bits(20 DOWNTO 13),
+		 result => w_offset_res);
+
+
+b2v_inst22 : instructiondecoderstage2
+PORT MAP(clk => clk,
+		 opcode => SYNTHESIZED_WIRE_27,
+		 mask_z => memory_flags_in8,
+		 mask_c => memory_flags_in9,
+		 mask_s => memory_flags_in10,
+		 mem_mode => memory_flags_in22,
+		 rw => memory_flags_in23,
+		 premem => memory_flags_in43,
+		 memlo => memory_flags_in44,
+		 ind => memory_flags_in45,
+		 shiftdirection => ALUCtrl_in2,
+		 shift_src => shift_src_out,
+		 sub_add => ALUCtrl_in14,
+		 op_signed => ALUCtrl_in15,
+		 bypass => ALUCtrl_in27,
+		 cs => ALUCtrl_in28,
+		 rw_long => memory_flags_in57,
+		 ow_status => memory_flags_in58,
+		 bypass_add => ALUCtrl_in29,
+		 bittest_val => stat_test_bit,
+		 stack_page => memory_flags_in59,
+		 offset_en => memory_flags_in60,
+		 offset_src => memory_flags_in61,
+		 a_src => a_src_out,
+		 addr_src => addr_src_out,
+		 b_src => b_src_out,
+		 bittest_bit => stat_sel,
+		 mode => GDFX_TEMP_SIGNAL_5,
+		 modePC => GDFX_TEMP_SIGNAL_6,
+		 modeSP => GDFX_TEMP_SIGNAL_7,
+		 opcode_out => opcode_bits,
+		 sel => GDFX_TEMP_SIGNAL_8,
+		 shiftmode => GDFX_TEMP_SIGNAL_9);
+
+
+b2v_inst23 : lpm_constant8
+PORT MAP(		 result => SYNTHESIZED_WIRE_10);
+
+
+b2v_inst24 : lpm_mux10
+PORT MAP(data0x => opcode_bits(23 DOWNTO 13),
+		 data1x => master_regs(30 DOWNTO 20),
+		 data2x => GDFX_TEMP_SIGNAL_10,
+		 sel => addr_src_out,
+		 result => GDFX_TEMP_SIGNAL_11);
+
+
+b2v_inst25 : lpm_mux14
+PORT MAP(data7 => master_regs(11),
+		 data6 => master_regs(10),
+		 data5 => master_regs(9),
+		 data4 => master_regs(8),
+		 data3 => master_regs(7),
+		 data2 => master_regs(6),
+		 data1 => master_regs(5),
+		 data0 => master_regs(4),
+		 sel => stat_sel,
+		 result => SYNTHESIZED_WIRE_12);
+
+
+b2v_inst26 : lpm_mux11
+PORT MAP(sel => shift_src_out,
+		 data0x => general_purposeB(2 DOWNTO 0),
+		 data1x => opcode_bits(15 DOWNTO 13),
+		 result => GDFX_TEMP_SIGNAL_12);
+
+
+SYNTHESIZED_WIRE_13 <= SYNTHESIZED_WIRE_12 XOR stat_test_bit;
+
+
+b2v_inst28 : lpm_mux13
+PORT MAP(data0x => general_purposeA,
+		 data1x => master_regs(19 DOWNTO 12),
+		 data2x => master_regs(11 DOWNTO 4),
+		 sel => a_src_out,
+		 result => GDFX_TEMP_SIGNAL_13);
+
+
+
+b2v_inst3 : trom
+PORT MAP(clock => clk,
+		 address => GDFX_TEMP_SIGNAL_14,
+		 q => SYNTHESIZED_WIRE_27);
+
+
+SYNTHESIZED_WIRE_9 <= NOT(SYNTHESIZED_WIRE_13);
+
+
+
+b2v_inst31 : lpm_mux7
+PORT MAP(sel => memory_flags(61),
+		 data0x => ALURes(18 DOWNTO 11),
+		 data1x => ALURes(10 DOWNTO 3),
+		 result => tm_offset_in);
+
+
+b2v_inst32 : lpm_constant1
+PORT MAP(		 result => SYNTHESIZED_WIRE_14);
+
+
+
+
+b2v_inst4 : lpm_mux2
+PORT MAP(data0x => general_purposeB,
+		 data1x => opcode_bits(20 DOWNTO 13),
+		 data2x => master_regs(19 DOWNTO 12),
+		 data3x => SYNTHESIZED_WIRE_14,
+		 sel => b_src_out,
+		 result => GDFX_TEMP_SIGNAL_15);
+
+
+b2v_inst5 : lpm_add_sub7
+PORT MAP(dataa => master_regs(30 DOWNTO 20),
+		 result => GDFX_TEMP_SIGNAL_16);
+
+
+b2v_inst6 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 30
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_25,
+		 d => GDFX_TEMP_SIGNAL_17,
+		 q => SYNTHESIZED_WIRE_0);
+
+
+b2v_inst7 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 36
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_28,
+		 d => GDFX_TEMP_SIGNAL_18,
+		 q => SYNTHESIZED_WIRE_18);
+
+
+b2v_inst8 : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 36
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_28,
+		 d => SYNTHESIZED_WIRE_18,
+		 q => master_regs);
+
+
+b2v_inst9 : lpm_mux9
+PORT MAP(sel => writeback_flags(52),
+		 data0x => SYNTHESIZED_WIRE_19,
+		 data1x => SYNTHESIZED_WIRE_20,
+		 result => SYNTHESIZED_WIRE_7);
+
+
+b2v_inst90342 : lpm_mux0
+PORT MAP(data1 => ALURes(0),
+		 data0 => memory_flags(0),
+		 sel => memory_flags(8),
+		 result => sign_out);
+
+
+b2v_memory_reg : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 62
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_25,
+		 d => SYNTHESIZED_WIRE_22,
+		 q => memory_flags);
+
+
+b2v_Stack_Page : lpm_constant6
+PORT MAP(		 result => stackPageConst);
+
+
+b2v_writeback_reg : d_ff_vhdl
+GENERIC MAP(BIT_WIDTH => 54
+			)
+PORT MAP(clk => clk,
+		 rst => rst,
+		 ce => SYNTHESIZED_WIRE_26,
+		 d => SYNTHESIZED_WIRE_24,
+		 q => writeback_flags);
+
+master_thread <= thread;
+
+ALUCtrl_in0 <= GDFX_TEMP_SIGNAL_9(0);
+ALUCtrl_in1 <= GDFX_TEMP_SIGNAL_9(1);
+ALUCtrl_in10 <= GDFX_TEMP_SIGNAL_13(4);
+ALUCtrl_in11 <= GDFX_TEMP_SIGNAL_13(5);
+ALUCtrl_in12 <= GDFX_TEMP_SIGNAL_13(6);
+ALUCtrl_in13 <= GDFX_TEMP_SIGNAL_13(7);
+ALUCtrl_in17 <= GDFX_TEMP_SIGNAL_15(0);
+ALUCtrl_in18 <= GDFX_TEMP_SIGNAL_15(1);
+ALUCtrl_in19 <= GDFX_TEMP_SIGNAL_15(2);
+ALUCtrl_in20 <= GDFX_TEMP_SIGNAL_15(3);
+ALUCtrl_in21 <= GDFX_TEMP_SIGNAL_15(4);
+ALUCtrl_in22 <= GDFX_TEMP_SIGNAL_15(5);
+ALUCtrl_in23 <= GDFX_TEMP_SIGNAL_15(6);
+ALUCtrl_in24 <= GDFX_TEMP_SIGNAL_15(7);
+ALUCtrl_in25 <= GDFX_TEMP_SIGNAL_5(0);
+ALUCtrl_in26 <= GDFX_TEMP_SIGNAL_5(1);
+ALUCtrl_in3 <= GDFX_TEMP_SIGNAL_12(0);
+ALUCtrl_in4 <= GDFX_TEMP_SIGNAL_12(1);
+ALUCtrl_in5 <= GDFX_TEMP_SIGNAL_12(2);
+ALUCtrl_in6 <= GDFX_TEMP_SIGNAL_13(0);
+ALUCtrl_in7 <= GDFX_TEMP_SIGNAL_13(1);
+ALUCtrl_in8 <= GDFX_TEMP_SIGNAL_13(2);
+ALUCtrl_in9 <= GDFX_TEMP_SIGNAL_13(3);
+memory_flags_in11 <= GDFX_TEMP_SIGNAL_11(0);
+memory_flags_in12 <= GDFX_TEMP_SIGNAL_11(1);
+memory_flags_in13 <= GDFX_TEMP_SIGNAL_11(2);
+memory_flags_in14 <= GDFX_TEMP_SIGNAL_11(3);
+memory_flags_in15 <= GDFX_TEMP_SIGNAL_11(4);
+memory_flags_in16 <= GDFX_TEMP_SIGNAL_11(5);
+memory_flags_in17 <= GDFX_TEMP_SIGNAL_11(6);
+memory_flags_in18 <= GDFX_TEMP_SIGNAL_11(7);
+memory_flags_in19 <= GDFX_TEMP_SIGNAL_11(8);
+memory_flags_in20 <= GDFX_TEMP_SIGNAL_11(9);
+memory_flags_in21 <= GDFX_TEMP_SIGNAL_11(10);
+memory_flags_in28 <= GDFX_TEMP_SIGNAL_8(0);
+memory_flags_in29 <= GDFX_TEMP_SIGNAL_8(1);
+memory_flags_in30 <= GDFX_TEMP_SIGNAL_8(2);
+memory_flags_in31 <= GDFX_TEMP_SIGNAL_6(0);
+memory_flags_in32 <= GDFX_TEMP_SIGNAL_6(1);
+memory_flags_in33 <= GDFX_TEMP_SIGNAL_7(0);
+memory_flags_in34 <= GDFX_TEMP_SIGNAL_7(1);
+memory_flags_in46 <= GDFX_TEMP_SIGNAL_16(0);
+memory_flags_in47 <= GDFX_TEMP_SIGNAL_16(1);
+memory_flags_in48 <= GDFX_TEMP_SIGNAL_16(2);
+memory_flags_in49 <= GDFX_TEMP_SIGNAL_16(3);
+memory_flags_in50 <= GDFX_TEMP_SIGNAL_16(4);
+memory_flags_in51 <= GDFX_TEMP_SIGNAL_16(5);
+memory_flags_in52 <= GDFX_TEMP_SIGNAL_16(6);
+memory_flags_in53 <= GDFX_TEMP_SIGNAL_16(7);
+memory_flags_in54 <= GDFX_TEMP_SIGNAL_16(8);
+memory_flags_in55 <= GDFX_TEMP_SIGNAL_16(9);
+memory_flags_in56 <= GDFX_TEMP_SIGNAL_16(10);
+END bdf_type;

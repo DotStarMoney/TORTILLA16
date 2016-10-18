@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="zGPU">
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|shiftBlock:inst4|lpm_clshift0:inst2|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_4gc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|shiftBlock:inst4|lpm_mux2:inst1|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_s7e.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|lpm_mux0:inst7|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_i7e.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|lpm_mux7:inst6|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_p7e.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|pipeline:inst|lpm_add_sub1:inst|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_lqg.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|pipeline:inst|lpm_mux0:inst1|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_i7e.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|pipeline:inst|lpm_mux0:inst3|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_i7e.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|shiftBlock:inst4|lpm_clshift1:inst|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_qee.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|shiftBlock:inst4|lpm_clshift2:inst5|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_lsd.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|ALU|shiftBlock:inst4|lpm_mux0:inst15|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_i7e.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

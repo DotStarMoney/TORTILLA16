@@ -1,0 +1,50 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Zamaster\Academic\Fall2014\EmbeddedSystems\GPU\simulation\modelsim
+Ealu
+Z1 w1423172129
+Z2 DPx10 cycloneive 20 cycloneive_atom_pack 0 22 kl[cFSlNG3=[4941E[z^43
+Z3 DPx10 cycloneive 21 cycloneive_components 0 22 CRz<34VLj@;LJ9[hTDHOL0
+Z4 DPx4 ieee 16 vital_primitives 0 22 9W@YP9_VCb?_GCJ8e:;YQ0
+Z5 DPx6 altera 11 dffeas_pack 0 22 ezM^I5DaniUK9b2=UR7d21
+Z6 DPx4 ieee 12 vital_timing 0 22 7h8zz2S4HVg:a;2TBMI[j1
+Z7 DPx3 std 6 textio 0 22 G^o2zK;Vh4eVdKTVo98653
+Z8 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z9 DPx6 altera 28 altera_primitives_components 0 22 @Ej38`k>o[zEeU;VS0i7W1
+Z10 dC:\Users\Zamaster\Academic\Fall2014\EmbeddedSystems\GPU\simulation\modelsim
+Z11 8zGPU.vho
+Z12 FzGPU.vho
+l0
+L36
+VDe7WWgaHcM`]]1gbMJ5?h3
+!s100 0MYK2>=j;ShiW55GmfFQd1
+Z13 OV;C;10.0c;49
+31
+Z14 !s108 1423172164.173000
+Z15 !s90 -reportprogress|300|-93|-work|work|zGPU.vho|
+Z16 !s107 zGPU.vho|
+Z17 o-93 -work work -O0
+Z18 tExplicit 1
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 3 alu 0 22 De7WWgaHcM`]]1gbMJ5?h3
+l348
+L99
+V5hjnT?c`^olJ_8P?UldEc3
+!s100 >eVDNF=FQ6e4^6l1:c9kL0
+R13
+31
+R14
+R15
+R16
+R17
+R18

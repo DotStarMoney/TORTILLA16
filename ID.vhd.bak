@@ -1,0 +1,15 @@
+ 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity InstructionDecoder is
+   port
+   (
+      q : out std_logic_vector(BIT_WIDTH-1 downto 0)
+   );
+end entity InstructionDecoder;
+ 
+architecture Behavioral of InstructionDecoder is
+begin
+      q <= (others => '0');
+end architecture Behavioral;

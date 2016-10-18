@@ -1,0 +1,28 @@
+ 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity Z_ABS is
+	generic(
+		BIT_WIDTH : natural := 8
+	);
+   port
+   (
+      data   : in std_logic_vector(BIT_WIDTH-1 downto 0);
+      result : out std_logic_vector(BIT_WIDTH-1 downto 0)
+   );
+end entity Z_ABS;
+ 
+architecture Behavioral of Z_ABS is
+begin
+   process (clk) is
+   begin
+      if rising_edge(clk) then  
+         if (rst='1') then   
+            q <= (others => '0');
+         elsif (ce='1') then
+            q <= d;
+         end if;
+      end if;
+   end process;
+end architecture Behavioral;

@@ -1,0 +1,38 @@
+ 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity InstructionDecoderStage2 is
+   port
+   (
+      opcode 			: in std_logic_vector(23 downto 0);
+		
+		mask_z   		: out std_logic;
+		mask_c   		: out std_logic;
+		mask_s   		: out std_logic;
+		addr_src 		: out std_logic_vector(1 downto 0);
+		mem_mode			: out std_logic;
+		rw					: out std_logic;
+		sel      		: out std_logic_vector(2 downto 0);
+		modePC			: out std_logic_vector(1 downto 0);
+		modeSP			: out std_logic_vector(1 downto 0);
+		premem			: out std_logic;
+		memlo 			: out std_logic;
+		ind   			: out std_logic;
+		shiftmode		: out std_logic_vector(1 downto 0);
+		shiftdirection : out std_logic;
+		shift_src		: out std_logic;
+		a_src				: out std_logic_vector(2 downto 0);
+		sub_add			: out std_logic;
+		b_src				: out std_logic_vector(2 downto 0);
+		mode				: out std_logic_vector(1 downto 0);
+		bypass			: out std_logic;
+		cs					: out std_logic
+   );
+end entity InstructionDecoderStage2;
+ 
+architecture Behavioral of InstructionDecoderStage2 is
+begin
+
+
+end architecture Behavioral;

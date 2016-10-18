@@ -1,0 +1,110 @@
+#  
+vsim work.coretest
+# vsim work.coretest 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.coretest(bdf_type)
+# Loading work.core(bdf_type)
+# Loading work.alu(bdf_type)
+# Loading work.pipeline(bdf_type)
+# Loading work.lpm_add_sub1(syn)
+# Loading lpm.lpm_components
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_add_sub(lpm_syn)
+# Loading lpm.lpm_add_sub_signed(lpm_syn)
+# Loading work.lpm_mux0(syn)
+# Loading lpm.lpm_mux(lpm_syn)
+# Loading work.addercomputecarry(struc)
+# Loading work.d_ff_vhdl(behavioral)
+# Loading work.shiftblock(bdf_type)
+# Loading work.lpm_clshift1(syn)
+# Loading lpm.lpm_clshift(lpm_syn)
+# Loading work.lpm_mux1(syn)
+# Loading work.lpm_clshift0(syn)
+# Loading work.lpm_clshift2(syn)
+# Loading work.bitwiseblock(struc)
+# Loading work.lpm_mux7(syn)
+# Loading work.threadmem(bdf_type)
+# Loading work.coreram(syn)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.multi_gnd(behavioral)
+# Loading work.lpm_constant9(syn)
+# Loading lpm.lpm_constant(lpm_syn)
+# Loading work.lpm_add_sub2(syn)
+# Loading lpm.lpm_add_sub_unsigned(lpm_syn)
+# Loading work.lpm_constant7(syn)
+# Loading work.lpm_mux15(syn)
+# Loading work.lpm_mux4(syn)
+# Loading work.lpm_mux9(syn)
+# Loading work.regile(bdf_type)
+# Loading work.lpm_mux8(syn)
+# ** Warning: (vsim-3473) Component instance "b2v_inst : alt3pram" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /coretest/b2v_inst/b2v_inst2 File: C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/regile.vhd
+# Loading ieee.numeric_std(body)
+# Loading work.z_abs(behavioral)
+# Loading work.lpm_decode1(syn)
+# Loading lpm.lpm_decode(lpm_syn)
+# ** Fatal: (vsim-3348) Port size (8) does not match actual size (6) for port '/coretest/b2v_inst/b2v_inst2/b2v_inst16/LPM_DECODE_component/eq'.
+#    Time: 0 ps  Iteration: 0  Instance: /coretest/b2v_inst/b2v_inst2/b2v_inst16/LPM_DECODE_component File: C:/altera/11.1/modelsim_ase/win32aloem/../altera/vhdl/src/220model/220model.vhd Line: 1223
+# FATAL ERROR while loading design
+# Error loading design
+# Compile of regile.vhd was successful.
+vsim work.coretest
+# vsim work.coretest 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.coretest(bdf_type)
+# Loading work.core(bdf_type)
+# Loading work.alu(bdf_type)
+# Loading work.pipeline(bdf_type)
+# Loading work.lpm_add_sub1(syn)
+# Loading lpm.lpm_components
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_add_sub(lpm_syn)
+# Loading lpm.lpm_add_sub_signed(lpm_syn)
+# Loading work.lpm_mux0(syn)
+# Loading lpm.lpm_mux(lpm_syn)
+# Loading work.addercomputecarry(struc)
+# Loading work.d_ff_vhdl(behavioral)
+# Loading work.shiftblock(bdf_type)
+# Loading work.lpm_clshift1(syn)
+# Loading lpm.lpm_clshift(lpm_syn)
+# Loading work.lpm_mux1(syn)
+# Loading work.lpm_clshift0(syn)
+# Loading work.lpm_clshift2(syn)
+# Loading work.bitwiseblock(struc)
+# Loading work.lpm_mux7(syn)
+# Loading work.threadmem(bdf_type)
+# Loading work.coreram(syn)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.multi_gnd(behavioral)
+# Loading work.lpm_constant9(syn)
+# Loading lpm.lpm_constant(lpm_syn)
+# Loading work.lpm_add_sub2(syn)
+# Loading lpm.lpm_add_sub_unsigned(lpm_syn)
+# Loading work.lpm_constant7(syn)
+# Loading work.lpm_mux15(syn)
+# Loading work.lpm_mux4(syn)
+# Loading work.lpm_mux9(syn)
+# Loading work.regile(bdf_type)
+# Loading work.lpm_mux8(syn)
+# ** Warning: (vsim-3473) Component instance "b2v_inst : alt3pram" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /coretest/b2v_inst/b2v_inst2 File: C:/Users/Zamaster/Academic/Fall2014/EmbeddedSystems/GPU/regile.vhd
+# Loading ieee.numeric_std(body)
+# Loading work.z_abs(behavioral)
+# Loading work.lpm_decode1(syn)
+# Loading lpm.lpm_decode(lpm_syn)
+# ** Fatal: (vsim-3348) Port size (8) does not match actual size (6) for port '/coretest/b2v_inst/b2v_inst2/b2v_inst16/LPM_DECODE_component/eq'.
+#    Time: 0 ps  Iteration: 0  Instance: /coretest/b2v_inst/b2v_inst2/b2v_inst16/LPM_DECODE_component File: C:/altera/11.1/modelsim_ase/win32aloem/../altera/vhdl/src/220model/220model.vhd Line: 1223
+# FATAL ERROR while loading design
+# Error loading design
